@@ -1,0 +1,41 @@
+﻿@model List<ProductViewModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Prezzo</th>
+            <th scope="col">Stock</th>
+            <th scope="col" colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+        <tr>
+            <td>@product.ProductName</td>
+            <td>@product.CategoryName</td>
+            <td>@product.Price</td>
+            <td>@product.UnitsInStock</td>
+            <td>
+                <a class="btn btn-primary" asp-controller="Product" asp-action="Product" asp-route-id="@product.ProductID">
+                    Edit
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-controller="Product" asp-action="Delete" asp-route-id="@product.ProductID">
+                    Delete
+                </a>
+            </td>
+        </tr>
+
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" asp-controller="Product" asp-action="Product" asp-route-id="0">
+    Insert
+</a>
+
+@*@await Html.PartialAsync("_Pagination", Model.Pagination)*@

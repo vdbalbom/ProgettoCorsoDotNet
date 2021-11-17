@@ -9,4 +9,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.11" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Core.ProgettoCorsoDotNet.domain\Core.ProgettoCorsoDotNet.domain.csproj" />
+    <ProjectReference Include="..\Core.ProgettoCorsoDotNet.infrastructure.bootstrap.dev\Core.ProgettoCorsoDotNet.infrastructure.bootstrap.dev.csproj" />
+  </ItemGroup>
+
 </Project>

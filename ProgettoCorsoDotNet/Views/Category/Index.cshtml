@@ -1,0 +1,37 @@
+﻿@model List<CategoryViewModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrizione</th>
+            <th scope="col" colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.CategoryName</td>
+                <td>@category.Description</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Category" asp-action="Category" asp-route-id="@category.CategoryID">
+                        Edit
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Category" asp-action="Delete" asp-route-id="@category.CategoryID">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" asp-controller="Category" asp-action="Category" asp-route-id="0">
+    Insert
+</a>
+
+@*@await Html.PartialAsync("_Pagination", Model.Pagination)*@

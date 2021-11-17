@@ -1,0 +1,21 @@
+﻿@model CategoryViewModel
+
+<form asp-action="Category" asp-controller="Category" asp-antiforgery="true" method="post">
+    <input asp-for="CategoryID" type="hidden" />
+    <div class="row">
+        <div class="col">
+            <label asp-for="CategoryName"></label>
+            <input asp-for="CategoryName" />
+        </div>
+        <div class="col">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" />
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary" type="submit">Salva</button>
+        <a class="btn btn-primary" asp-controller="Category" asp-action="Index">
+            Annulla
+        </a>
+    </div>
+</form>

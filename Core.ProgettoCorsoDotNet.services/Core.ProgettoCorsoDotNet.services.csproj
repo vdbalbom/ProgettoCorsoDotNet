@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.ProgettoCorsoDotNet.domain\Core.ProgettoCorsoDotNet.domain.csproj" />
+    <ProjectReference Include="..\Core.ProgettoCorsoDotNet.persistence.common\Core.ProgettoCorsoDotNet.persistence.common.csproj" />
+    <ProjectReference Include="..\Core.ProgettoCorsoDotNet.services.common\Core.ProgettoCorsoDotNet.services.common.csproj" />
+  </ItemGroup>
+
+</Project>

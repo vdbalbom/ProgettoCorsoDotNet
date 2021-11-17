@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.ProgettoCorsoDotNet.persistence.mock\Core.ProgettoCorsoDotNet.persistence.mock.csproj" />
+    <ProjectReference Include="..\Core.ProgettoCorsoDotNet.services.common\Core.ProgettoCorsoDotNet.services.common.csproj" />
+    <ProjectReference Include="..\Core.ProgettoCorsoDotNet.services\Core.ProgettoCorsoDotNet.services.csproj" />
+  </ItemGroup>
+
+</Project>

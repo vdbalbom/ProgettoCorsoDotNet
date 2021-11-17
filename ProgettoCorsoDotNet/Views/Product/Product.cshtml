@@ -1,0 +1,40 @@
+﻿@model ProductViewModel
+
+<form asp-action="Product" asp-controller="Product" asp-antiforgery="true" method="post">
+    <input asp-for="ProductID" type="hidden" />
+    <div class="row">
+        <div class="col">
+            <label asp-for="ProductName"></label>
+            <input asp-for="ProductName" />
+        </div>
+        <div class="col">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" />
+        </div>
+        <div class="col">
+            <label asp-for="UnitsInStock"></label>
+            <input asp-for="UnitsInStock" />
+        </div>
+        <div class="col">
+            <label asp-for="Discontinued"></label>
+            <input class="form-check-input" type="checkbox" asp-for="Discontinued" />
+        </div>
+        <div class="col">
+            <label asp-for="CategoryID"></label>
+            <select asp-for="CategoryID">
+                @foreach (SelectListItem item in Model.Categories)
+                {
+                    <option value="@item.Value" selected="@item.Selected">
+                        @item.Text
+                    </option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary" type="submit">Salva</button>
+        <a class="btn btn-primary" asp-controller="Product" asp-action="Index">
+            Annulla
+        </a>
+    </div>
+</form>
