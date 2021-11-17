@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core.ProgettoCorsoDotNet.persistence.mock\Core.ProgettoCorsoDotNet.persistence.mock.csproj" />
+    <ProjectReference Include="..\Core.ProgettoCorsoDotNet.persistence.MSQL\Core.ProgettoCorsoDotNet.persistence.MSQL.csproj" />
     <ProjectReference Include="..\Core.ProgettoCorsoDotNet.services.common\Core.ProgettoCorsoDotNet.services.common.csproj" />
     <ProjectReference Include="..\Core.ProgettoCorsoDotNet.services\Core.ProgettoCorsoDotNet.services.csproj" />
   </ItemGroup>

@@ -1,6 +1,8 @@
 ﻿using Core.ProgettoCorsoDotNet.domain;
 using Core.ProgettoCorsoDotNet.persistence.common;
 using Core.ProgettoCorsoDotNet.persistence.MSQL.EF.Data;
+using Core.ProgettoCorsoDotNet.persistence.MSQL.EF.Models;
+using Core.ProgettoCorsoDotNet.persistence.MSQL.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,28 +14,36 @@ namespace Core.ProgettoCorsoDotNet.persistence.MSQL
     public class CategoryRepository : IRepository<Category>
     {
         private readonly NORTHWINDContext _context;
-        public CategoryRepository(DbContext context)
+        public CategoryRepository(NORTHWINDContext context)
         {
-            _context = (NORTHWINDContext)context;
+            _context = context;
         }
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            Categories element = _context.Categories.FirstOrDefault(x => x.CategoryId == id);
+            _ = _context.Categories.Remove(element);
+            _ = _context.SaveChanges();
+            return true;
         }
 
         public IQueryable<Category> Get()
         {
-            throw new NotImplementedException();
+            return _context.Categories.AsQueryable().ProjectToDomain();
         }
 
         public Category Insert(Category element)
         {
-            throw new NotImplementedException();
+            int id = _context.Categories.Add(element.ProjectToModel()).Entity.CategoryId;
+            _ = _context.SaveChanges();
+            element.CategoryID = id;
+            return element;
         }
 
         public Category Update(Category element)
         {
-            throw new NotImplementedException();
+            _context.Update(element.ProjectToModel());
+            _ = _context.SaveChanges();
+            return element;
         }
     }
 }

@@ -9,9 +9,30 @@ using System.Threading.Tasks;
 
 namespace ProgettoCorsoDotNet.Extensions
 {
-    public static class DomainToViewModel
+    public static class Extensions
     {
-        public static ProductViewModel ToViewModel(this Product product, IService<Category> categoryService, bool withcategoryList = false)
+        internal static Product ToDomain(this ProductViewModel pvm)
+        {
+            Product product = new();
+            product.CategoryID = pvm.CategoryID;
+            product.Discontinued = pvm.Discontinued;
+            product.Price = pvm.Price;
+            product.ProductID = pvm.ProductID;
+            product.ProductName = pvm.ProductName;
+            product.UnitsInStock = pvm.UnitsInStock;
+            return product;
+        }
+
+        internal static Category ToDomain(this CategoryViewModel cvm)
+        {
+            Category category = new();
+            category.CategoryID = cvm.CategoryID;
+            category.CategoryName = cvm.CategoryName;
+            category.Description = cvm.Description;
+            return category;
+        }
+
+        internal static ProductViewModel ToViewModel(this Product product, IService<Category> categoryService, bool withcategoryList = false)
         {
             ProductViewModel pvm = new();
             pvm.CategoryID = product.GetCategory(categoryService).CategoryID;
@@ -25,7 +46,7 @@ namespace ProgettoCorsoDotNet.Extensions
             if (withcategoryList)
             {
                 pvm.Categories = new();
-                foreach(Category cat in categoryService.Get())
+                foreach (Category cat in categoryService.Get())
                 {
                     SelectListItem item = new();
                     item.Selected = cat.CategoryID == pvm.CategoryID;
@@ -37,7 +58,7 @@ namespace ProgettoCorsoDotNet.Extensions
             return pvm;
         }
 
-        public static CategoryViewModel ToViewModel(this Category category)
+        internal static CategoryViewModel ToViewModel(this Category category)
         {
             CategoryViewModel cvm = new();
             cvm.CategoryID = category.CategoryID;
