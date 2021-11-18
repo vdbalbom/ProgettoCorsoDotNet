@@ -1,6 +1,14 @@
-﻿@model List<CategoryViewModel>
+﻿@model CategoryIndexViewModel
 
 <table class="table">
+    <thead>
+    <th scope="col" colspan="3"></th>
+    <th>
+        <a class="btn btn-primary" asp-controller="Category" asp-action="Category" asp-route-id="0">
+            Insert
+        </a>
+    </th>
+    </thead>
     <thead>
         <tr>
             <th scope="col">Nome</th>
@@ -9,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var category in Model)
+        @foreach (var category in Model.Categories)
         {
             <tr>
                 <td>@category.CategoryName</td>
@@ -28,7 +36,7 @@
                     }
                     else
                     {
-                        <a class="btn btn-primary" disabled>
+                        <a class="btn btn-secondary" disabled>
                             Delete
                         </a>
                     }
@@ -43,4 +51,4 @@
     Insert
 </a>
 
-@*@await Html.PartialAsync("_Pagination", Model.Pagination)*@
+@await Html.PartialAsync("_Pagination", Model.Pagination)

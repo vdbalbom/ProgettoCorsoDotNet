@@ -1,6 +1,16 @@
-﻿@model List<ProductViewModel>
+﻿@model ProductIndexViewModel
+
+
 
 <table class="table">
+    <thead>
+        <th scope="col" colspan="5"></th>
+        <th>
+            <a class="btn btn-primary" asp-controller="Product" asp-action="Product" asp-route-id="0">
+                Insert
+            </a>
+        </th>
+    </thead>
     <thead>
         <tr>
             <th scope="col">Nome</th>
@@ -11,31 +21,27 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var product in Model)
+        @foreach (var product in Model.Products)
         {
-        <tr>
-            <td>@product.ProductName</td>
-            <td>@product.CategoryName</td>
-            <td>@product.Price</td>
-            <td>@product.UnitsInStock</td>
-            <td>
-                <a class="btn btn-primary" asp-controller="Product" asp-action="Product" asp-route-id="@product.ProductID">
-                    Edit
-                </a>
-            </td>
-            <td>
-                <a class="btn btn-primary" asp-controller="Product" asp-action="Delete" asp-route-id="@product.ProductID">
-                    Delete
-                </a>
-            </td>
-        </tr>
+            <tr>
+                <td>@product.ProductName</td>
+                <td>@product.CategoryName</td>
+                <td>@product.Price</td>
+                <td>@product.UnitsInStock</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Product" asp-action="Product" asp-route-id="@product.ProductID">
+                        Edit
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Product" asp-action="Delete" asp-route-id="@product.ProductID">
+                        Delete
+                    </a>
+                </td>
+            </tr>
 
         }
     </tbody>
 </table>
 
-<a class="btn btn-primary" asp-controller="Product" asp-action="Product" asp-route-id="0">
-    Insert
-</a>
-
-@*@await Html.PartialAsync("_Pagination", Model.Pagination)*@
+@await Html.PartialAsync("_Pagination", Model.Pagination)

@@ -19,15 +19,17 @@ namespace ProgettoCorsoDotNet.Controllers
             _service = service;
             _productService = productService;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page = 0, int perPage = 10)
         {
-            List<Category> categories = _service.Get().ToList();
-            List<CategoryViewModel> categorieViewModels = new();
-            foreach(Category c in categories)
+            CategoryIndexViewModel model = new();
+            List<Category> categories = _service.Get().Skip(perPage * page).Take(perPage).ToList();
+            model.Categories = new();
+            foreach (Category c in categories)
             {
-                categorieViewModels.Add(c.ToViewModel(_productService));
+                model.Categories.Add(c.ToViewModel(_productService));
             }
-            return View(categorieViewModels);
+            model.Pagination = new(page, perPage, _service.Get().Count());
+            return View(model);
         }
 
         [HttpGet]
