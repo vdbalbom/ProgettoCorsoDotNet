@@ -11,5 +11,14 @@ namespace Core.ProgettoCorsoDotNet.domain
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
         public string Description { get; set; }
+        
+        public bool CanDelete(IService<Product> productService)
+        {
+            if(productService.Get().Where(x => x.CategoryID == CategoryID).Count() == 0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

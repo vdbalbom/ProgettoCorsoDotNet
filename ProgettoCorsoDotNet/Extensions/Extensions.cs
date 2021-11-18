@@ -58,12 +58,13 @@ namespace ProgettoCorsoDotNet.Extensions
             return pvm;
         }
 
-        internal static CategoryViewModel ToViewModel(this Category category)
+        internal static CategoryViewModel ToViewModel(this Category category, IService<Product> productService)
         {
             CategoryViewModel cvm = new();
             cvm.CategoryID = category.CategoryID;
             cvm.CategoryName = category.CategoryName;
             cvm.Description = category.Description;
+            cvm.CanDelete = category.CanDelete(productService);
             return cvm;
         }
     }

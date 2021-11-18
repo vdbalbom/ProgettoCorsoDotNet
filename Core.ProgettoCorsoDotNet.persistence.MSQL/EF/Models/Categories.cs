@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.ProgettoCorsoDotNet.persistence.MSQL.EF.Models
 {
-    [Keyless]
     public partial class Categories
     {
+        [Key]
         [Column("CategoryID")]
         public int CategoryId { get; set; }
         [Required]

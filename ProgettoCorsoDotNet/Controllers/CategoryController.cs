@@ -13,9 +13,11 @@ namespace ProgettoCorsoDotNet.Controllers
     public class CategoryController : Controller
     {
         IService<Category> _service;
-        public CategoryController(IService<Category> service)
+        IService<Product> _productService;
+        public CategoryController(IService<Category> service, IService<Product> productService)
         {
             _service = service;
+            _productService = productService;
         }
         public IActionResult Index()
         {
@@ -23,7 +25,7 @@ namespace ProgettoCorsoDotNet.Controllers
             List<CategoryViewModel> categorieViewModels = new();
             foreach(Category c in categories)
             {
-                categorieViewModels.Add(c.ToViewModel());
+                categorieViewModels.Add(c.ToViewModel(_productService));
             }
             return View(categorieViewModels);
         }
@@ -31,7 +33,7 @@ namespace ProgettoCorsoDotNet.Controllers
         [HttpGet]
         public IActionResult Category(int id)
         {
-            return View(_service.GetByID(id).ToViewModel());
+            return View(_service.GetByID(id).ToViewModel(_productService));
         }
 
         [HttpPost]
@@ -48,7 +50,10 @@ namespace ProgettoCorsoDotNet.Controllers
 
         public IActionResult Delete(int id)
         {
-            _ = _service.Delete(id);
+            if (_service.GetByID(id).CanDelete(_productService))
+            {
+                _ = _service.Delete(id);
+            }
             return RedirectToAction("Index");
         }
     }

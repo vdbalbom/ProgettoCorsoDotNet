@@ -20,9 +20,18 @@
                     </a>
                 </td>
                 <td>
-                    <a class="btn btn-primary" asp-controller="Category" asp-action="Delete" asp-route-id="@category.CategoryID">
-                        Delete
-                    </a>
+                    @if (category.CanDelete)
+                    {
+                        <a class="btn btn-primary" asp-controller="Category" asp-action="Delete" asp-route-id="@category.CategoryID">
+                            Delete
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-primary" disabled>
+                            Delete
+                        </a>
+                    }
                 </td>
             </tr>
 
