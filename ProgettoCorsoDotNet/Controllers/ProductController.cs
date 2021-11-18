@@ -23,7 +23,7 @@ namespace ProgettoCorsoDotNet.Controllers
         {
             ProductIndexViewModel model = new();
             model.Products = new();
-            List<Product> products = _service.Get().Skip(perPage*page).Take(perPage).ToList();
+            List<Product> products = _service.Get().OrderBy(x => x.ProductID).Skip(perPage*page).Take(perPage).ToList();
             foreach (Product p in products)
             {
                 model.Products.Add(p.ToViewModel(_categoryService));

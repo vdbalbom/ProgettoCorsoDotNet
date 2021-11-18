@@ -22,7 +22,7 @@ namespace ProgettoCorsoDotNet.Controllers
         public IActionResult Index(int page = 0, int perPage = 10)
         {
             CategoryIndexViewModel model = new();
-            List<Category> categories = _service.Get().Skip(perPage * page).Take(perPage).ToList();
+            List<Category> categories = _service.Get().OrderBy(x => x.CategoryID).Skip(perPage * page).Take(perPage).ToList();
             model.Categories = new();
             foreach (Category c in categories)
             {
